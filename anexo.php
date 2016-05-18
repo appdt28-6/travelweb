@@ -1055,22 +1055,22 @@ td
   <td></td>
  </tr>
  <tr height=15 style='height:15.0pt'>
-  <td height=15 class=xl100 style='height:15.0pt'>Redondo en autobús</td>
+	 
+  <td height=15 class=xl100 style='height:15.0pt'><?php echo utf8_encode($descpaq);?></td>
   <td class=xl101 style='border-left:none'><span
-  style="mso-spacerun:yes">&nbsp;</span>NO<span
+  style="mso-spacerun:yes">&nbsp;</span><?php echo "$".$opciones;?><span
   style="mso-spacerun:yes">&nbsp;</span></td>
   <td class=xl105 style='border-left:none'>SI</td>
   <td colspan=2 class=xl129 style='border-right:1.0pt solid black'>0</td>
   <td class=xl80></td>
   <td></td>
  </tr>
- <tr height=15 style='height:15.0pt'>
-  <td height=15 class=xl98 style='height:15.0pt;border-top:none'>Redondo en
-  avión</td>
+  <tr height=15 style='height:15.0pt'>
+  <td height=15 class=xl98 style='height:15.0pt;border-top:none'></td>
   <td class=xl102 style='border-top:none;border-left:none'><span
-  style="mso-spacerun:yes">&nbsp;</span>SI<span
+  style="mso-spacerun:yes">&nbsp;</span><span
   style="mso-spacerun:yes">&nbsp;</span></td>
-  <td class=xl106 style='border-top:none;border-left:none'>NO</td>
+  <td class=xl106 style='border-top:none;border-left:none'></td>
   <td colspan=2 class=xl76 style='border-right:1.0pt solid black'>EXTRAS</td>
   <td class=xl78></td>
   <td></td>
@@ -1187,7 +1187,7 @@ td
   <td colspan=3 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=14 style='height:14.0pt'>
-  <td height=14 class=xl84 style='height:14.0pt'><?php echo $barradesc;?></td>
+  <td height=14 class=xl84 style='height:14.0pt'>Barras: <?php echo $barradesc;?></td>
   <td class=xl113 style='border-left:none'><span
   style="mso-spacerun:yes">&nbsp;</span><?php echo "$".$barra;?><span
   style="mso-spacerun:yes">&nbsp;</span></td>
@@ -1196,7 +1196,7 @@ td
   <td colspan=3 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=14 style='height:14.0pt'>
-  <td height=14 class=xl65 style='height:14.0pt;border-top:none'><?php echo utf8_encode($habdesc);?></td>
+  <td height=14 class=xl65 style='height:14.0pt;border-top:none'>Habitación: <?php echo utf8_encode($habdesc);?></td>
   <td class=xl87 align=right style='border-top:none;border-left:none'><span
   style="mso-spacerun:yes">&nbsp;</span><?php echo "$".$hab;?><span
   style="mso-spacerun:yes">&nbsp;</span></td>
@@ -1207,7 +1207,7 @@ td
   <td></td>
  </tr>
  <tr height=14 style='height:14.0pt'>
-  <td height=14 class=xl84 style='height:14.0pt;border-top:none'><?php echo utf8_encode($extradesc);?></td>
+  <td height=14 class=xl84 style='height:14.0pt;border-top:none'>Extras: <?php echo utf8_encode($extradesc);?></td>
   <td class=xl88 align=right style='border-top:none;border-left:none'><span
   style="mso-spacerun:yes">&nbsp;</span><?php echo "$".$extra;?><span
   style="mso-spacerun:yes">&nbsp;</span></td>
@@ -1274,9 +1274,40 @@ td
   <td></td>
  </tr>
  <tr height=14 style='height:14.0pt'>
-  <td height=14 class=xl112 width=247 style='height:14.0pt;width:247pt'></td>
-  <td></td>
-  <td class=xl108 width=81 style='border-top:none;width:81pt'>21-abr-16</td>
+  <!--<td height=14 class=xl112 width=247 style='height:14.0pt;width:247pt'></td>
+  <td></td>-->
+  <!--listado de pagos-->
+  <?php
+
+include('connect.php');
+$query="select * from tpago where id_evento='$event'";
+$link=mysql_connect($server,$dbuser,$dbpass);
+$result=mysql_db_query($database,$query,$link);
+$row_cnt = mysql_num_rows($result);
+//echo "Aqui".$row_cnt;
+
+$calculapago=($totalpaq-500)/$row_cnt;
+
+
+while($row = mysql_fetch_array($result))
+{
+	echo "<td height=14 class=xl112 width=247 style='height:14.0pt;width:247pt'></td>";
+  echo "<td></td>";
+	$tpago=$row['descr'];
+	echo "<td class=xl108 width=81 style='border-top:none;width:81pt'>".$row['descr']."</td>";
+	echo "<td class=xl109 align=right style='border-top:none;border-left:none'><span
+  style=\"mso-spacerun:yes\">&nbsp;</span>".money_format('%i',round($calculapago/100.0,0)*100)."
+  <span
+  style=\"mso-spacerun:yes\">&nbsp;</span></td>";
+  echo "<td></td>";
+  echo "<td></td>";
+  echo "</tr>";
+
+}
+mysql_free_result($result);
+mysql_close($link);	
+?>
+ <!-- <td class=xl108 width=81 style='border-top:none;width:81pt'>21-abr-16</td>
   <td class=xl109 align=right style='border-top:none;border-left:none'><span
   style="mso-spacerun:yes">&nbsp;</span>
   <?php $calculapago=($totalpaq-500)/4; echo money_format('%i',round($calculapago/100.0,0)*100);?>
@@ -1296,7 +1327,7 @@ td
   <td class=xl75></td>
   <td></td>
   <td></td>
- </tr>
+ </tr>-->
  <tr height=14 style='height:14.0pt'>
   <td rowspan=15 height=219 class=xl131 width=247 style='border-bottom:1.0pt solid black;
   height:219.75pt;width:247pt'><font class="font7">VIGÉSIMA SEXTA.-</font><font
@@ -1312,7 +1343,7 @@ td
   expresa de cancelación del servicio por escrito de </font><font class="font7">“EL
   CLIENTE”.</font></td>
   <td></td>
-  <td class=xl108 width=81 style='border-top:none;width:81pt'>19-may-16</td>
+  <!--<td class=xl108 width=81 style='border-top:none;width:81pt'>19-may-16</td>
   <td class=xl109 align=right style='border-top:none;border-left:none'><span
   style="mso-spacerun:yes">&nbsp;</span><?php echo money_format('%i',round($calculapago/100.0,0)*100);?><span
   style="mso-spacerun:yes">&nbsp;</span></td>
@@ -1337,7 +1368,7 @@ td
   <td class=xl75></td>
   <td></td>
   <td></td>
- </tr>
+ </tr>-->
  <tr height=15 style='mso-height-source:userset;height:15.75pt'>
   <td colspan=4 height=15 class=xl145 style='border-right:1.0pt solid black;
   height:15.75pt'>PENALIZACIÓN POR PAGO TARDÍO</td>
@@ -1411,7 +1442,7 @@ td
  </tr>
  <tr height=15 style='height:15.0pt'>
   <td colspan=4 height=15 class=xl143 style='border-right:1.0pt solid black;
-  height:15.0pt'><?php echo "VeranoVallarta2016-".$idcontract; ?></td>
+  height:15.0pt'><?php echo utf8_encode($evento)."2016-".$idcontract; ?></td>
   <td></td>
   <td></td>
  </tr>
