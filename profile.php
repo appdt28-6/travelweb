@@ -460,8 +460,25 @@ mysql_close($link);
 						<div class="padding40">
 						Anexo
 						<hr>
-						<a href="anexo.php?id=<?php echo $id;?>&&event=<?php echo $event;?>&&paq=<?php echo $paq;?>" target="_blank">Imprime tu anexo Aquí</a>. Es muy importante que lo entregues a tu coordinador.
-						</div>
+						<?php 
+							if($event==4)
+							{
+								echo "AVISO IMPORTANTE";
+								echo "<br>";
+								echo "Estimado cliente de MásTravel por el momento tu Anexo no puede ser impreso debido algunos ajustes que estamos realizando.";
+								echo "<br>";
+								echo "Podras hacer tu impresión a partir del día Miercoles 18 de Mayo. Gracias.";
+
+
+							}
+							else{
+								echo "<a href=\"anexo.php?id=".$id."&&event=".$event."&&paq=".$paq." \" target=\"_blank\">Imprime tu anexo Aquí</a>. Es muy importante que lo entregues a tu coordinador.";
+
+							}
+						?>
+						<!--<a href="anexo.php?id=<?php echo $id;?>&&event=<?php echo $event;?>&&paq=<?php echo $paq;?>" target="_blank">Imprime tu anexo Aquí</a>. Es muy importante que lo entregues a tu coordinador.-->
+
+												</div>
 					  </div>
 					  <!-- END OF TAB 5 -->	
 					  

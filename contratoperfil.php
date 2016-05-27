@@ -2,7 +2,7 @@
 $id=$_GET['id'];
 $nombre="";
 include('connect.php');
-$query="SELECT * FROM Clientes where id_cliente='$id'";
+$query="SELECT Clientes.id_cliente as id_cliente,Clientes.nombre as nombre,Clientes.ap as ap,Clientes.am as am,Clientes.fn as fn,Clientes.calle as calle,Clientes.numero as numero,Clientes.col as col,Clientes.mun as min,Clientes.estado as estado,Clientes.cp as cp,Clientes.email as email,Clientes.cel as cel,Clientes.tel as tel, evento.nombre as evento FROM Clientes inner join evento on Clientes.id_evento=evento.id_evento where Clientes.id_cliente='$id'";
 $link=mysql_connect($server,$dbuser,$dbpass);
 $result=mysql_db_query($database,$query,$link);
 while($row = mysql_fetch_array($result))
@@ -16,6 +16,7 @@ while($row = mysql_fetch_array($result))
 	$email=$row['email'];
 	$cel=$row['cel'];
 	$tel=$row['tel'];
+	$eventname=$row['evento'];
 }
 mysql_free_result($result);
 mysql_close($link);		
@@ -30,7 +31,7 @@ while($row = mysql_fetch_array($result))
 
 }
 mysql_free_result($result);
-mysql_close($link);		
+mysql_close($link);	
 ?>
 <html xmlns:v="urn:schemas-microsoft-com:vml"
 xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -55,8 +56,9 @@ QUE REGULA LA PRESTACION DE SERVICIOS TURISTICOS<o:p></o:p></span></u></b></p>
 <p class=MsoNormal align=right style='text-align:right;line-height:normal'><b
 style='mso-bidi-font-weight:normal'><span lang=ES-MX style='font-size:9.0pt;
 font-family:"Myriad Pro Light","sans-serif";mso-bidi-font-family:Tahoma'>Grupo:
-<span style='color:red'>Verano Vallarta 2016</span>// Clave de Reservación
-Personal: <span style='color:red'>VeranoVallarta2016-<?php echo $idcontract; ?><o:p></o:p></span></span></b></p>
+<span style='color:red'><?php echo utf8_encode($eventname);?></span>// Clave de Reservación
+Personal: <span style='color:red'><?php echo utf8_encode($eventname);?>2016-<?php echo $idcontract; ?><o:p></o:p></span></span></b></p>
+
 
 <p class=MsoNormal align=right style='text-align:right;line-height:normal'><b
 style='mso-bidi-font-weight:normal'><span lang=ES-MX style='font-size:9.0pt;
@@ -78,7 +80,7 @@ mso-fareast-language:ES-MX'><?php echo "<b>".$nombre."</b>";?></span></b><span l
 style='font-size:9.0pt;font-family:"Myriad Pro Light","sans-serif";mso-bidi-font-family:
 Tahoma'> Y/O SU REPRESENTANTE LEGAL O TUTOR Y QUE LO IDENTIFICA COMO ALUMNO Y/O
 INTEGRANTE DEL GRUPO DENOMINADO <b style='mso-bidi-font-weight:normal'><span
-style='color:red'>Verano Vallarta 2016 </span></b>A QUIEN EN LO SUCESIVO Y PARA LOS EFECTOS
+style='color:red'><?php echo "<b>".utf8_encode($eventname)."</b>";?> 2016 </span></b>A QUIEN EN LO SUCESIVO Y PARA LOS EFECTOS
 DEL PRESENTE CONTRATO SE LE DENOMINARA <b style='mso-bidi-font-weight:normal'><u>“EL
 CLIENTE</u>”</b>, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLAUSULAS:<o:p></o:p></span></p>
 

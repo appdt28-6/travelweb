@@ -1,5 +1,5 @@
 <?php 
-	$event=$_GET['event'];
+	$event=$_POST['event'];
 	
 	require 'database.php';
 
