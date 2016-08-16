@@ -1,14 +1,11 @@
 <?php
 class Database 
 {
-	/*$server="localhost";
-$database="mastrave_cm";
-$dbpass="@ppDT2016.";
-$dbuser="mastrave_root";*/
-	private static $dbName = 'mastrave_cm' ; 
+	private static $dbName = 'traveladmin' ; 
 	private static $dbHost = 'localhost' ;
-	private static $dbUsername = 'mastrave_root';
-	private static $dbUserPassword = '@ppDT2016.';
+	private static $dbUsername = 'root';
+	private static $dbUserPassword = 'toor';
+
 	
 	private static $cont  = null;
 	
